@@ -140,6 +140,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Clubs.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,7 +171,6 @@
   <ItemGroup>
     <Folder Include="Classes\Common\" />
     <Folder Include="Images\" />
-    <Folder Include="Models\" />
     <Folder Include="Pages\Clubs\Elements\" />
     <Folder Include="Pages\Users\Elements\" />
   </ItemGroup>
