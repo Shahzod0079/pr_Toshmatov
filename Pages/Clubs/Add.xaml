@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Width="80" Height="80" VerticalAlignment="Top" Margin="10" Source="/Images/ckubs-icon.png" />
+        <Image Width="80" Height="80" VerticalAlignment="Top" Margin="10" Source="/Images/clubs-icon.png" />
         <Button Click="BthAdd" Height="25" Content="Добавить" 
              VerticalAlignment="Top" Margin="10,95,10,0"
              Background="#FF46FD00" BorderBrush="#FF46FD00" Foreground="White" />

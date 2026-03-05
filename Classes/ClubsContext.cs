@@ -9,7 +9,7 @@ using WpfApp1.Classes.Common;
 
 namespace pr_26_Toshmatov.Classes
 {
-    internal class ClubsContext : DbContext
+    public class ClubsContext : DbContext
     {
         public DbSet<Clubs> Clubs { get; set; }
 

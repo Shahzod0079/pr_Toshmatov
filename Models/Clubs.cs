@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pr_26_Toshmatov.Models
 {
-    internal class Clubs
+    public class Users 
     {
-        public int ID { get; set; } 
-
-        public string Name { get; set; }
-
-        public string Address { get; set; }
-
-        public String WorkTime { get; set; }
+        public int Id { get; set; }
+        public string FIO { get; set; }
+        public DateTime RentStart { get; set; } 
+        public int Duration { get; set; }
+        public int IdClub { get; set; } 
     }
 }

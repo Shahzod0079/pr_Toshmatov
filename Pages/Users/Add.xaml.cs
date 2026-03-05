@@ -10,10 +10,12 @@ namespace pr_26_Toshmatov.Pages.Users
         public ClubsContext AllClub = new ClubsContext();
         public Models.Users User;
         public Main Main;
+        public ClubsContext AllUsers { get; set; }
 
         public Add(Main Main, Models.Users User = null)
         {
             InitializeComponent();
+            AllUsers = new ClubsContext();
 
             this.Main = Main;
 
