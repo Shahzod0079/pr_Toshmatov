@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using ModelsUsers = pr_26_Toshmatov.Models.Users;
-
 
 namespace pr_26_Toshmatov.Pages.Clubs
 {
-   
     public partial class Add : Page
     {
-
         Main Main;
-
         Models.Clubs Club;
 
         public Add(Main Main, Models.Clubs Club = null)
@@ -20,18 +15,13 @@ namespace pr_26_Toshmatov.Pages.Clubs
 
             this.Main = Main;
 
-
             if (Club != null)
             {
                 this.Club = Club;
-
                 this.Name.Text = Club.Name;
-
                 this.Address.Text = Club.Address;
-
                 this.WorkTime.Text = Club.WorkTime;
-
-                BtnAdd.Content = "Изменить";
+                BthAdd.Content = "Изменить";
             }
         }
 
@@ -48,13 +38,10 @@ namespace pr_26_Toshmatov.Pages.Clubs
 
             if (this.Club == null)
             {
-
                 Club = new Models.Clubs();
-
                 Club.Name = this.Name.Text;
                 Club.Address = this.Address.Text;
                 Club.WorkTime = this.WorkTime.Text;
-
                 this.Main.AllClub.Clubs.Add(this.Club);
             }
             else
@@ -65,7 +52,6 @@ namespace pr_26_Toshmatov.Pages.Clubs
             }
 
             this.Main.AllClub.SaveChanges();
-
             MainWindow.init.OpenPages(new Pages.Clubs.Main());
         }
 

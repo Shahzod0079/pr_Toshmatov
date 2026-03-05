@@ -27,19 +27,19 @@
 
             <Label Content="Наименование:" VerticalAlignment="Top" 
                 HorizontalAlignment="Left" Margin="10,10,0,0"/>
-            <TextBox x:Name="Name" Text="Наименование" 
+            <TextBox x:Name="Name" 
                   VerticalAlignment="Top" Margin="10,36,10,0" Height="25"
-                  VerticalContentAlignment="Center" IsEnabled="False"/>
+                  VerticalContentAlignment="Center" />
 
             <Label Content="Адрес:" VerticalAlignment="Top" 
                 HorizontalAlignment="Left" Margin="10,66,0,0"/>
-            <TextBox x:Name="Address" Text="Адрес" 
+            <TextBox x:Name="Address"
                   VerticalAlignment="Top" Margin="10,92,10,0" Height="25"
                   VerticalContentAlignment="Center" IsEnabled="False"/>
 
             <Label Content="Время работы:" VerticalAlignment="Top" 
                 HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Column="1"/>
-            <TextBox x:Name="WorkTime" Text="Время работы" 
+            <TextBox x:Name="WorkTime" 
                   VerticalAlignment="Top" Margin="10,36,10,0" Height="81"
                   VerticalContentAlignment="Top" Grid.Column="1" 
                   IsEnabled="False" TextWrapping="Wrap"/>

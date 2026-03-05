@@ -2,12 +2,11 @@
 
 namespace pr_26_Toshmatov.Models
 {
-    public class Users 
+    public class Clubs
     {
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public DateTime RentStart { get; set; } 
-        public int Duration { get; set; }
-        public int IdClub { get; set; } 
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string WorkTime { get; set; }
     }
 }
