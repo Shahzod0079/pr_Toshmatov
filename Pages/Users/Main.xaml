@@ -8,56 +8,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Main">
 
-    <Grid Margin="10" Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid Margin="20" Background="#FFF0F0F0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Image Width="80" Height="80" VerticalAlignment="Top" Margin="10" Source="/Images/icon-user.png" />
-        <Button Click="BthAdd" Height="25" Content="Добавить" 
-             VerticalAlignment="Top" Margin="10,95,10,0"
-             Background="#FF46FD00" BorderBrush="#FF46FD00" Foreground="White" />
-        <Button Click="BthDelet" Height="25" Content="Удалить" 
-     VerticalAlignment="Top" Margin="10,134,10,0"
-     Background="#FFB22318" Foreground="White" />
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+                <Label Content="Поиск по ФИО:" VerticalAlignment="Center"/>
+                <TextBox x:Name="SearchBox" Width="200" Height="25" Margin="5" TextChanged="SearchBox_TextChanged"/>
 
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Label Content="Сортировка:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <ComboBox x:Name="SortBox" Width="150" Height="25" Margin="5" SelectionChanged="SortBox_SelectionChanged">
+                    <ComboBoxItem>По ФИО</ComboBoxItem>
+                    <ComboBoxItem>По дате</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
 
-            <Label Content="Дата аренды:" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="10,10,0,0"/>
-            <DatePicker x:Name="RentDate"  Text="Наименование" 
-                  VerticalAlignment="Top" Margin="10,36,10,0" Height="25"
-                  VerticalContentAlignment="Center" IsEnabled="False"/>
+            <ScrollViewer Grid.Row="1" Margin="0,0,0,50">
+                <StackPanel x:Name="Parent"/>
+            </ScrollViewer>
 
-            <Label Content="Время аренды:" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="10,66,0,0"/>
-            <TextBox x:Name="Address" 
-                  VerticalAlignment="Top" Margin="10,92,10,0" Height="25"
-                  VerticalContentAlignment="Center" IsEnabled="False"/>
-
-            <Label Content="Продолжительность:" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Column="1"/>
-            <TextBox x:Name="WorkTime" 
-                  VerticalAlignment="Top" Margin="10,92,10,0" Height="25"
-                  VerticalContentAlignment="Top" Grid.Column="1" 
-                  IsEnabled="False" TextWrapping="Wrap"/>
-            <TextBox x:Name="WorkTime_Копировать" 
-                VerticalAlignment="Top" Margin="10,155,10,0" Height="25"
-                VerticalContentAlignment="Top" 
-                IsEnabled="False" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-            <Label Content="Клуб:" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="10,66,0,0" Grid.Column="1"/>
-            <Label Content="ФИО:" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="10,129,0,0" Width="205"/>
-            <TextBox x:Name="WorkTime_Копировать1" Text="Время работы" 
-                VerticalAlignment="Top" Margin="10,36,10,0" Height="25"
-                VerticalContentAlignment="Top" Grid.Column="1" 
-                IsEnabled="False" TextWrapping="Wrap"/>
+            <Button 
+                x:Name="BthAdd"
+                Click="AddUser"
+                Height="25" 
+                Content="Добавить" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,10,10" 
+                HorizontalAlignment="Right" 
+                Width="100" 
+                Background="#FF46FD00" 
+                BorderBrush="#FF46FD00" 
+                Foreground="White" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Page>

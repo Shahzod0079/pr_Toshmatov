@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using pr_26_Toshmatov.Classes;
 
@@ -10,6 +11,7 @@ namespace pr_26_Toshmatov.Pages.Users.Elements
         Main Main;
         Models.Users User;
 
+        // ОДИН конструктор (не два!)
         public Item(Models.Users user, Main main)
         {
             InitializeComponent();
@@ -19,10 +21,11 @@ namespace pr_26_Toshmatov.Pages.Users.Elements
 
             this.FIO.Text = user.FIO;
             this.RentDate.Text = user.RentStart.ToString("yyyy-MM-dd");
+            this.RentTime.Text = user.RentStart.ToString("HH:mm");
             this.Duration.Text = user.Duration.ToString();
 
             var club = AllClub.Clubs.FirstOrDefault(x => x.Id == user.IdClub);
-            this.Club.Text = club != null ? club.Name : "Клуб не найден";
+            this.ClubName.Text = club != null ? club.Name : "Клуб не найден";
         }
 
         private void EditUser(object sender, System.Windows.RoutedEventArgs e)
@@ -32,9 +35,19 @@ namespace pr_26_Toshmatov.Pages.Users.Elements
 
         private void DeleteUser(object sender, System.Windows.RoutedEventArgs e)
         {
-            Main.AllUsers.Users.Remove(User);
-            Main.AllUsers.SaveChanges();
-            Main.Parent.Children.Remove(this);
+            var result = MessageBox.Show($"Удалить пользователя {User.FIO}?",
+                "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Main.AllUsers.Users.Remove(User);
+                Main.AllUsers.SaveChanges();
+
+                if (Main.FindName("Parent") is StackPanel stackPanel)
+                {
+                    stackPanel.Children.Remove(this);
+                }
+            }
         }
     }
 }

@@ -12,22 +12,20 @@ namespace pr_26_Toshmatov.Pages.Clubs
         public Add(Main Main, Models.Clubs Club = null)
         {
             InitializeComponent();
-
             this.Main = Main;
 
             if (Club != null)
             {
                 this.Club = Club;
-                this.Name.Text = Club.Name;
+                this.ClubName.Text = Club.Name;
                 this.Address.Text = Club.Address;
                 this.WorkTime.Text = Club.WorkTime;
-                BthAdd.Content = "Изменить";
             }
         }
 
-        private void AddClub(object sender, System.Windows.RoutedEventArgs e)
+        private void AddClub(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Name.Text) ||
+            if (string.IsNullOrWhiteSpace(ClubName.Text) ||
                 string.IsNullOrWhiteSpace(Address.Text) ||
                 string.IsNullOrWhiteSpace(WorkTime.Text))
             {
@@ -36,26 +34,34 @@ namespace pr_26_Toshmatov.Pages.Clubs
                 return;
             }
 
-            if (this.Club == null)
+            try
             {
-                Club = new Models.Clubs();
-                Club.Name = this.Name.Text;
-                Club.Address = this.Address.Text;
-                Club.WorkTime = this.WorkTime.Text;
-                this.Main.AllClub.Clubs.Add(this.Club);
-            }
-            else
-            {
-                Club.Name = this.Name.Text;
-                Club.Address = this.Address.Text;
-                Club.WorkTime = this.WorkTime.Text;
-            }
+                if (this.Club == null)
+                {
+                    Club = new Models.Clubs();
+                    Club.Name = this.ClubName.Text;
+                    Club.Address = this.Address.Text;
+                    Club.WorkTime = this.WorkTime.Text;
+                    this.Main.AllClub.Clubs.Add(this.Club);
+                }
+                else
+                {
+                    Club.Name = this.ClubName.Text;
+                    Club.Address = this.Address.Text;
+                    Club.WorkTime = this.WorkTime.Text;
+                }
 
-            this.Main.AllClub.SaveChanges();
-            MainWindow.init.OpenPages(new Pages.Clubs.Main());
+                this.Main.AllClub.SaveChanges();
+                MainWindow.init.OpenPages(new Pages.Clubs.Main());
+            }
+            catch (Exception ex)
+            {
+                var innerMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show($"Ошибка сохранения: {innerMessage}", "Ошибка");
+            }
         }
 
-        private void Cancel(object sender, System.Windows.RoutedEventArgs e)
+        private void Cancel(object sender, RoutedEventArgs e)
         {
             MainWindow.init.OpenPages(new Pages.Clubs.Main());
         }

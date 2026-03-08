@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid>
         <Button
-            Click="Clubs"
+            Click="OpenClubs"
             Height="25"
             Content="Клубы"
             VerticalAlignment="Top"
@@ -19,7 +19,7 @@
             BorderBrush="#FF46FD00"
             Foreground="White"/>
         <Button 
-            Click="Users"
+            Click="OpenUsers"
             Height="25"
             Content="Пользователи"
             VerticalAlignment="Top"

@@ -46,12 +46,10 @@
                      VerticalContentAlignment="Center" />
 
             <Label Content="Клуб:" VerticalAlignment="Top" 
-       HorizontalAlignment="Left" Margin="10,66,0,0" Grid.Column="1"/>
+                   HorizontalAlignment="Left" Margin="10,66,0,0" Grid.Column="1"/>
             <ComboBox x:Name="Clubs" 
-          VerticalAlignment="Top" Margin="10,92,10,0" Height="25"
-          DisplayMemberPath="Name" Grid.Column="1">
-                <ComboBoxItem IsSelected="True" IsEnabled="True">Выберите...</ComboBoxItem>
-            </ComboBox>
+                      VerticalAlignment="Top" Margin="10,92,10,0" Height="25"
+                      DisplayMemberPath="Name" Grid.Column="1" />
 
             <Label Content="Продолжительность (часов):" VerticalAlignment="Top" 
                    HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Column="1"/>

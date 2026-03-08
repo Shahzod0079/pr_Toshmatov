@@ -4,43 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pr_26_Toshmatov.Pages.Clubs.Elements"
-             mc:Ignorable="d" d:DesignWidth="800" Height="176">
-    <Grid Margin="10,10,449,10" Background="White">
+             mc:Ignorable="d" d:DesignWidth="800" Height="200">
+
+    <Grid Margin="10" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Image Width="80" Height="80" VerticalAlignment="Top" Margin="10" Source="/Images/clubs-icon.png" />
-        <Button Click="EditClub" Height="25" Content="Изменить" 
-                VerticalAlignment="Top" Margin="10,95,10,0"
-                Background="#FF46FD00" BorderBrush="#FF46FD00" Foreground="White" />
-        <Button Click="DeleteClub" Content="Удалить" Margin="10,125,10,0"
-                Background="#FFCDE1E1" BorderBrush="#FFCDE1E1" Foreground="White" Height="25" VerticalAlignment="Top" />
 
-        <Grid Grid.Column="1" Height="156" VerticalAlignment="Center" Margin="0,0,-144,0">
+        <Button Click="EditClub" Height="25" Content="Изменить" 
+                VerticalAlignment="Top" Margin="10,95,10,5"
+                Background="#FF46FD00" BorderBrush="#FF46FD00" Foreground="White" />
+
+        <Button Click="DeleteClub" Height="25" Content="Удалить" 
+                Margin="10,125,10,10"
+                Background="#FFB22318" BorderBrush="#FFB22318" Foreground="White" 
+                VerticalAlignment="Top" />
+
+        <Grid Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="247*"/>
-                <ColumnDefinition Width="187*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Наименование:" VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" Margin="10,10,0,0" Height="26" Width="96"/>
-            <TextBox x:Name="Name" Text="Наименование" Margin="10,36,0,0"
-                     VerticalContentAlignment="Center" IsEnabled="False" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+            <!-- Левая колонка -->
+            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <Label Content="Наименование:" Margin="0,0,0,0" Height="26"/>
+                <TextBox x:Name="club" Text="Наименование" Margin="0,5,0,10"
+                         VerticalContentAlignment="Center" IsEnabled="False" Height="25" Width="120"/>
 
-            <Label Content="Адрес:" VerticalAlignment="Center" 
-                   HorizontalAlignment="Left" Margin="10,0,0,0" Height="26" Width="46"/>
-            <TextBox x:Name="Address" Text="Адрес" 
-                     VerticalAlignment="Top" Margin="10,92,0,0" Height="25"
-                     VerticalContentAlignment="Center" IsEnabled="False" HorizontalAlignment="Left" Width="96"/>
+                <Label Content="Адрес:" Margin="0,0,0,0" Height="26"/>
+                <TextBox x:Name="Address" Text="Адрес" Margin="0,5,0,0"
+                         VerticalContentAlignment="Center" IsEnabled="False" Height="25" Width="120"/>
+            </StackPanel>
 
-            <Label Content="Время работы:" VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" Margin="127,10,0,0" Height="26" Width="91"/>
-            <TextBox x:Name="WorkTime" Text="Время работы" 
-                     VerticalAlignment="Top" Margin="129,36,0,0" Height="81"
-                     VerticalContentAlignment="Top" 
-                     IsEnabled="False" TextWrapping="Wrap" HorizontalAlignment="Left" Width="87"/>
+            <!-- Правая колонка -->
+            <StackPanel Grid.Column="1">
+                <Label Content="Время работы:" Margin="0,0,0,0" Height="26"/>
+                <TextBox x:Name="WorkTime" Text="Время работы" Margin="0,5,0,0"
+                         VerticalAlignment="Top" Height="120"
+                         VerticalContentAlignment="Top" 
+                         IsEnabled="False" TextWrapping="Wrap" AcceptsReturn="True"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
