@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 
-namespace WpfApp1.Classes.Common
+namespace pr_26_Toshmatov.Classes.Common
 {
     public class Config
     {

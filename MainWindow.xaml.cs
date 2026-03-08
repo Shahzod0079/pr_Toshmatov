@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using pr_26_Toshmatov.Pages;
 
 namespace pr_26_Toshmatov
 {
@@ -12,7 +13,7 @@ namespace pr_26_Toshmatov
         {
             InitializeComponent();
             init = this;
-            OpenPages(new Pages.Clubs.Main());
+            OpenPages(new Pages.Login());
         }
 
         public void OpenPages(Page page)
@@ -22,10 +23,26 @@ namespace pr_26_Toshmatov
 
 
 
-        private void OpenClubs(object sender, RoutedEventArgs e) =>
-            OpenPages(new Pages.Clubs.Main());
+        private void OpenClubs(object sender, RoutedEventArgs e)
+        {
+            if (Login.CurrentUser != null) 
+                OpenPages(new Pages.Clubs.Main());
+            else
+                MessageBox.Show("Пожалуйста, сначала входите или зарегистрируйтесь!");
+        }
 
-        private void OpenUsers(object sender, RoutedEventArgs e) =>
-            OpenPages(new Pages.Users.Main());
+        private void OpenUsers(object sender, RoutedEventArgs e)
+        {
+            if (Login.CurrentUser != null)
+                OpenPages(new Pages.Users.Main());
+            else
+                MessageBox.Show("Пожалуйста, сначала входите или зарегистрируйтесь!");
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Pages.Login.Logout(); 
+            OpenPages(new Pages.Login());
+        }
     }
 }

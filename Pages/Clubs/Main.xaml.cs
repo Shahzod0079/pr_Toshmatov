@@ -20,16 +20,40 @@ namespace pr_26_Toshmatov.Pages.Clubs
         private void LoadClubs()
         {
             allClubsList = AllClub.Clubs.ToList();
-            ApplyFilterAndSort();
+
+            var currentUser = Pages.Login.CurrentUser;
+
+            if (FindName("Parent") is StackPanel stackPanel)
+            {
+                stackPanel.Children.Clear();
+
+                if (currentUser == null || currentUser.Role != "Admin")
+                {
+                    BthAdd.Visibility = Visibility.Collapsed;
+                }
+
+                foreach (var club in allClubsList)
+                {
+                    var item = new Elements.Item(club, this);
+
+                    if (currentUser == null || currentUser.Role != "Admin")
+                    {
+                        item.HideButtons();
+                    }
+
+                    stackPanel.Children.Add(item);
+                }
+            }
         }
 
         private void ApplyFilterAndSort()
         {
             try
             {
+                var currentUser = Pages.Login.CurrentUser;
                 var filtered = allClubsList.AsEnumerable();
 
-                // Фильтр по названию
+                // Фильтр
                 if (SearchBox != null && !string.IsNullOrWhiteSpace(SearchBox.Text))
                 {
                     filtered = filtered.Where(c => c.Name.ToLower().Contains(SearchBox.Text.ToLower()));
@@ -39,7 +63,6 @@ namespace pr_26_Toshmatov.Pages.Clubs
                 if (SortBox != null && SortBox.SelectedItem != null)
                 {
                     string sort = (SortBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-
                     switch (sort)
                     {
                         case "По названию":
@@ -51,13 +74,30 @@ namespace pr_26_Toshmatov.Pages.Clubs
                     }
                 }
 
-                // Обновление отображения
+                // Отображение
                 if (FindName("Parent") is StackPanel stackPanel)
                 {
                     stackPanel.Children.Clear();
+
+                    if (currentUser == null || currentUser.Role != "Admin")
+                    {
+                        BthAdd.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        BthAdd.Visibility = Visibility.Visible;
+                    }
+
                     foreach (var club in filtered)
                     {
-                        stackPanel.Children.Add(new Elements.Item(club, this));
+                        var item = new Elements.Item(club, this);
+
+                        if (currentUser == null || currentUser.Role != "Admin")
+                        {
+                            item.HideButtons();
+                        }
+
+                        stackPanel.Children.Add(item);
                     }
                 }
             }
@@ -77,13 +117,13 @@ namespace pr_26_Toshmatov.Pages.Clubs
             ApplyFilterAndSort();
         }
 
-        public void RefreshClubs()
-        {
-            LoadClubs();
-        }
-
         private void AddClub(object sender, RoutedEventArgs e)
         {
+            if (Pages.Login.CurrentUser == null || Pages.Login.CurrentUser.Role != "Admin")
+            {
+                MessageBox.Show("У вас нет прав на добавление!");
+                return;
+            }
             MainWindow.init.OpenPages(new Pages.Clubs.Add(this));
         }
     }

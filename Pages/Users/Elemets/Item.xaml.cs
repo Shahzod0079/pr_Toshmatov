@@ -30,24 +30,37 @@ namespace pr_26_Toshmatov.Pages.Users.Elements
 
         private void EditUser(object sender, System.Windows.RoutedEventArgs e)
         {
+            // Проверка на админа
+            if (Pages.Login.CurrentUser == null || Pages.Login.CurrentUser.Role != "Admin")
+            {
+                System.Windows.MessageBox.Show("У вас нет прав на изменение!");
+                return;
+            }
             MainWindow.init.OpenPages(new Pages.Users.Add(this.Main, this.User));
         }
 
         private void DeleteUser(object sender, System.Windows.RoutedEventArgs e)
         {
-            var result = MessageBox.Show($"Удалить пользователя {User.FIO}?",
-                "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            // Проверка на админа
+            if (Pages.Login.CurrentUser == null || Pages.Login.CurrentUser.Role != "Admin")
             {
-                Main.AllUsers.Users.Remove(User);
-                Main.AllUsers.SaveChanges();
-
-                if (Main.FindName("Parent") is StackPanel stackPanel)
-                {
-                    stackPanel.Children.Remove(this);
-                }
+                System.Windows.MessageBox.Show("У вас нет прав на удаление!");
+                return;
             }
+
+            Main.AllUsers.Users.Remove(User);
+            Main.AllUsers.SaveChanges();
+
+            if (Main.FindName("Parent") is StackPanel stackPanel)
+            {
+                stackPanel.Children.Remove(this);
+            }
+        }
+
+        public void HideButtons()
+        {
+            EditButton.Visibility = Visibility.Collapsed;
+            DeleteButton.Visibility = Visibility.Collapsed;
         }
     }
 }

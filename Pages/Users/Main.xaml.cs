@@ -27,6 +27,7 @@ namespace pr_26_Toshmatov.Pages.Users
         {
             try
             {
+                var currentUser = Pages.Login.CurrentUser;
                 var filtered = allUsersList.AsEnumerable();
 
                 // Фильтр по ФИО
@@ -51,13 +52,33 @@ namespace pr_26_Toshmatov.Pages.Users
                     }
                 }
 
-                // Обновление отображения
+                // Отображение
                 if (FindName("Parent") is StackPanel stackPanel)
                 {
                     stackPanel.Children.Clear();
+
+                    // Скрываем кнопку добавления для не-админов
+                    if (currentUser == null || currentUser.Role != "Admin")
+                    {
+                        BthAdd.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        BthAdd.Visibility = Visibility.Visible;
+                    }
+
+                    // Добавляем пользователей
                     foreach (var user in filtered)
                     {
-                        stackPanel.Children.Add(new Elements.Item(user, this));
+                        var item = new Elements.Item(user, this);
+
+                        // Скрываем кнопки в карточке для не-админов
+                        if (currentUser == null || currentUser.Role != "Admin")
+                        {
+                            item.HideButtons();
+                        }
+
+                        stackPanel.Children.Add(item);
                     }
                 }
             }
@@ -84,6 +105,11 @@ namespace pr_26_Toshmatov.Pages.Users
 
         private void AddUser(object sender, RoutedEventArgs e)
         {
+            if (Pages.Login.CurrentUser == null || Pages.Login.CurrentUser.Role != "Admin")
+            {
+                MessageBox.Show("У вас нет прав на добавление!");
+                return;
+            }
             MainWindow.init.OpenPages(new Pages.Users.Add(this));
         }
     }

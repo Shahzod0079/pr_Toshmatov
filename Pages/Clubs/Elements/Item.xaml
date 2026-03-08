@@ -14,11 +14,11 @@
 
         <Image Width="80" Height="80" VerticalAlignment="Top" Margin="10" Source="/Images/clubs-icon.png" />
 
-        <Button Click="EditClub" Height="25" Content="Изменить" 
+        <Button x:Name="EditButton"  Click="EditClub" Height="25" Content="Изменить" 
                 VerticalAlignment="Top" Margin="10,95,10,5"
                 Background="#FF46FD00" BorderBrush="#FF46FD00" Foreground="White" />
 
-        <Button Click="DeleteClub" Height="25" Content="Удалить" 
+        <Button x:Name="DeleteButton" Click="DeleteClub" Height="25" Content="Удалить" 
                 Margin="10,125,10,10"
                 Background="#FFB22318" BorderBrush="#FFB22318" Foreground="White" 
                 VerticalAlignment="Top" />
