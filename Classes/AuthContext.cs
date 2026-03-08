@@ -18,7 +18,6 @@ namespace pr_26_Toshmatov.Classes
             optionsBuilder.UseMySql(Common.Config.ConnectionConfig, Common.Config.Version);
         }
 
-        // Явно указываем имя таблицы
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SystemUser>().ToTable("SystemUsers");

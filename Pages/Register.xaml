@@ -18,36 +18,30 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
         <TextBlock Grid.Row="0" Text="Регистрация нового пользователя" 
                    FontSize="20" FontWeight="Bold" 
                    HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-        <!-- Поле ФИО -->
         <StackPanel Grid.Row="1" Margin="10">
             <Label Content="ФИО:" FontWeight="Bold"/>
             <TextBox x:Name="FIOBox" Height="30" Padding="5"/>
         </StackPanel>
 
-        <!-- Поле Логин -->
         <StackPanel Grid.Row="2" Margin="10">
             <Label Content="Логин:" FontWeight="Bold"/>
             <TextBox x:Name="LoginBox" Height="30" Padding="5"/>
         </StackPanel>
 
-        <!-- Поле Пароль -->
         <StackPanel Grid.Row="3" Margin="10">
             <Label Content="Пароль:" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordBox" Height="30" Padding="5"/>
         </StackPanel>
 
-        <!-- Поле Подтверждение пароля -->
         <StackPanel Grid.Row="4" Margin="10">
             <Label Content="Подтверждение пароля:" FontWeight="Bold"/>
             <PasswordBox x:Name="ConfirmPasswordBox" Height="30" Padding="5"/>
         </StackPanel>
 
-        <!-- Кнопки -->
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="BtnRegister" Click="BtnRegister_Click" Content="Зарегистрироваться" 
                     Width="150" Height="35" Margin="5" 
@@ -57,7 +51,6 @@
                     Background="#FFCDE1E1" BorderBrush="#FFCDE1E1" Foreground="White"/>
         </StackPanel>
 
-        <!-- Сообщение об ошибке -->
         <TextBlock Grid.Row="6" x:Name="ErrorText" Foreground="Red" 
                    HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap"/>
     </Grid>

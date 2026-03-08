@@ -20,10 +20,8 @@ namespace pr_26_Toshmatov.Pages
         {
             try
             {
-                // Очищаем предыдущую ошибку
                 ErrorText.Text = "";
 
-                // Проверка заполнения полей
                 if (string.IsNullOrWhiteSpace(FIOBox.Text))
                 {
                     ErrorText.Text = "Введите ФИО!";
@@ -42,21 +40,18 @@ namespace pr_26_Toshmatov.Pages
                     return;
                 }
 
-                // Проверка совпадения паролей
                 if (PasswordBox.Password != ConfirmPasswordBox.Password)
                 {
                     ErrorText.Text = "Пароли не совпадают!";
                     return;
                 }
 
-                // Проверка длины пароля
                 if (PasswordBox.Password.Length < 3)
                 {
                     ErrorText.Text = "Пароль должен быть не менее 3 символов!";
                     return;
                 }
 
-                // Проверка, существует ли уже такой логин
                 var existingUser = auth.Users.FirstOrDefault(u => u.Login == LoginBox.Text);
                 if (existingUser != null)
                 {
@@ -64,24 +59,20 @@ namespace pr_26_Toshmatov.Pages
                     return;
                 }
 
-                // Создание нового пользователя
                 var newUser = new SystemUser
                 {
                     FIO = FIOBox.Text,
                     Login = LoginBox.Text,
-                    Password = PasswordBox.Password, // В реальном проекте нужно хешировать!
-                    Role = "User" // По умолчанию обычный пользователь
+                    Password = PasswordBox.Password, 
+                    Role = "User" 
                 };
 
-                // Добавление в БД
                 auth.Users.Add(newUser);
                 auth.SaveChanges();
 
-                // Показываем сообщение об успехе
                 MessageBox.Show("Регистрация прошла успешно! Теперь вы можете войти.",
                     "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Возврат на страницу входа
                 MainWindow.init.OpenPages(new Pages.Login());
             }
             catch (Exception ex)
@@ -92,7 +83,7 @@ namespace pr_26_Toshmatov.Pages
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            // Возврат на страницу входа
+
             MainWindow.init.OpenPages(new Pages.Login());
         }
     }
