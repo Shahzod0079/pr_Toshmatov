@@ -31,6 +31,8 @@ namespace pr_26_Toshmatov.Pages
 
             try
             {
+                ErrorText.Text = "";
+
                 var user = auth.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
                 if (user != null)
@@ -49,7 +51,7 @@ namespace pr_26_Toshmatov.Pages
                 else
                 {
                     ErrorText.Text = "Неверный логин или пароль!";
-                    ErrorText.Visibility = Visibility.Visible;
+                    return;
                 }
             }
             catch (Exception ex)
